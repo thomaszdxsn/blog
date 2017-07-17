@@ -1,0 +1,24 @@
+body {
+    padding-top: 70px;
+}
+.navbar-brand {
+    padding-left: 100px;
+}
+
+.articles {
+    margin: 0 20%;
+}
+
+.media {
+    position: relative;
+}
+
+.enter {
+    position: absolute;
+    right: 15px;
+    bottom: 23px;
+}
+
+.label {
+    display: inline-block;
+}
