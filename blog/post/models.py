@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from uuslug import uuslug
+from django_markdown.models import MarkdownField
 
 from core.models import TimeStampAbsClass, PostPublishedManager
 
@@ -14,8 +15,8 @@ class Post(TimeStampAbsClass):
                                on_delete=models.CASCADE)
     title = models.CharField("标题", max_length=60, db_index=True)
     slug = models.CharField(max_length=100)
-    description = models.CharField("简评", max_length=200)
-    content = models.TextField("内容")
+    description = models.TextField("简评", max_length=200, default="")
+    content = MarkdownField("内容")
     publish_time = models.DateTimeField("发表时间", default=timezone.now)
     image = models.ImageField(upload_to="post/%Y/%m/%d", blank=True)
 

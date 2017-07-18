@@ -33,6 +33,8 @@ urlpatterns = [
     url(r"^image/(?P<width>\d+)/(?P<height>\d+)/$",
         core_views.placeholder_view,
         name="placeholder"),
+
+    url(r"^markdown/", include("django_markdown.urls")),
 ]
 
 if settings.DEBUG:
