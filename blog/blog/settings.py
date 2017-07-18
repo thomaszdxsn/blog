@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "django_markdown",
+    "taggit",
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -131,3 +132,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# tag 不区分大小写
+TAGGIT_CASE_INSENSITIVE = True

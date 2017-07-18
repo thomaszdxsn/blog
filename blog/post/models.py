@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from uuslug import uuslug
+from taggit.managers import TaggableManager
 from django_markdown.models import MarkdownField
 
 from core.models import TimeStampAbsClass, PostPublishedManager
@@ -22,6 +23,7 @@ class Post(TimeStampAbsClass):
 
     objects = models.Manager()
     published = PostPublishedManager()
+    tags = TaggableManager(help_text="输入逗号分割的标签串", blank=True)
 
     class Meta:
         ordering = ("-created",)

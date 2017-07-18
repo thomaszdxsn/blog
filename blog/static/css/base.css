@@ -1,6 +1,11 @@
 body {
     padding-top: 70px;
 }
+
+.thumbnail:hover {
+    background: #ccc;
+}
+
 .navbar-brand {
     padding-left: 100px;
 }

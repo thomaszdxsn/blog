@@ -1,8 +1,10 @@
 {% extends "post/base.html" %}
 
-{% block title %}博客首页{% endblock %}
+{% block title %}{{ tag.slug }}{% endblock %}
 
 {% block content %}
+    <h1 class="page-header">具有标签 <span class="label label-primary">{{ tag }}</span> 的文章:</h1>
+    {% if posts %}
     <div class="articles">
         {% for post in posts %}
             <section class="media">
@@ -35,4 +37,8 @@
             </section>
         {% endfor %}
     </div>
+    {% else %}
+    <h2 class="lead">暂无相关内容</h2>
+    {% endif %}
+
 {% endblock %}

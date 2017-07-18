@@ -32,6 +32,9 @@ urlpatterns = [
     url(r"^(?P<slug>[\w-]+)/$",
         post_views.post_detail_view,
         name="post_detail"),
+    url(r"^(?P<tag_slug>[\w-]+)$",
+        post_views.post_list_by_tag,
+        name="post_tagged"),
 
     url(r"^image/(?P<width>\d+)/(?P<height>\d+)/$",
         core_views.placeholder_view,

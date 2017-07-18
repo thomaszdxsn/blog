@@ -12,3 +12,4 @@ class PostAdmin(admin.ModelAdmin):
     search_fields = ("title", "content", "author")
     exclude = ("slug",)
     formfield_overrides = {MarkdownField: {"widget": AdminMarkdownWidget}}
+
