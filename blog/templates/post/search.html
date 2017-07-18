@@ -1,8 +1,10 @@
 {% extends "post/base.html" %}
 
-{% block title %}博客首页{% endblock %}
+{% block title %}搜索页面{% endblock %}
 
 {% block content %}
+    <h1 class="page-header">搜索 "{{ query }}" 的结果:</h1>
+    {% if posts %}
     <div class="articles">
         {% for post in posts %}
             <section class="media">
@@ -32,4 +34,8 @@
             </section>
         {% endfor %}
     </div>
+    {% else %}
+    <h2 class="lead">暂无相关内容</h2>
+    {% endif %}
+
 {% endblock %}

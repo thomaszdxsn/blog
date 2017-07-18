@@ -26,10 +26,10 @@
             </div> <!--/.navbar-header -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left"  action="{% url 'post_search' %}">
                     <div class="form-group">
                         <input type="text" class="form-control"
-                               placeholder="搜索标题/文章" name="query">
+                               placeholder="搜索标题/描述" name="query">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
