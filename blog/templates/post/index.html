@@ -5,10 +5,15 @@
 {% block content %}
     <div class="articles">
         {% for post in posts %}
-            <article class="media">
+            <section class="media">
                 <div class="media-left">
-                    <a href="">
-                        <img class="media-object" src="{{ post.image }}">
+                    <a href="{{ post.get_absolute_url }}">
+                        <img class="media-object"
+                             src="{% if post.image %}
+                                    {{ post.image.url }}
+                                  {% else %}
+                                    {% url 'placeholder' 136 120 %}
+                                  {% endif %}"/>
                     </a>
                 </div>
                 <div class="media-body">
@@ -19,12 +24,12 @@
                     <span class="label label-info">cs</span>
                     </p>
                     <p>{{ post.content|truncatechars:120|linebreaks }}</p>
-                    <button class="btn btn-info btn-sm enter">
+                    <a class="btn btn-info btn-sm enter" href="{{ post.get_absolute_url }}">
                         阅读全文 »
-                    </button>
+                    </a>
                 </div>
                 <hr />
-            </article>
+            </section>
         {% endfor %}
     </div>
 {% endblock %}

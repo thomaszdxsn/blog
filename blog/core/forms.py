@@ -8,6 +8,7 @@ from PIL import Image, ImageDraw
 
 
 class ImageForm(forms.Form):
+    """生成占位符图片"""
     height = forms.IntegerField(min_value=1, max_value=2000)
     width = forms.IntegerField(min_value=1, max_value=2000)
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
 
 from uuslug import uuslug
 
@@ -14,10 +14,10 @@ class Post(TimeStampAbsClass):
                                on_delete=models.CASCADE)
     title = models.CharField("标题", max_length=60, db_index=True)
     slug = models.CharField(max_length=100)
+    description = models.CharField("简评", max_length=200)
     content = models.TextField("内容")
     publish_time = models.DateTimeField("发表时间", default=timezone.now)
-    image = models.ImageField(upload_to="post/%Y/%m/%d",
-                              default="/image/136/120/")
+    image = models.ImageField(upload_to="post/%Y/%m/%d", blank=True)
 
     objects = models.Manager()
     published = PostPublishedManager()
@@ -33,6 +33,10 @@ class Post(TimeStampAbsClass):
         self.slug = uuslug(self.title, instance=self,
                            max_length=100, start_no=2)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("post_detail", kwargs={"slug": self.slug})
+
 
 
 
