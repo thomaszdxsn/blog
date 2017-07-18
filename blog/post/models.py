@@ -41,5 +41,17 @@ class Post(TimeStampAbsClass):
         return reverse("post_detail", kwargs={"slug": self.slug})
 
 
+class Carousel(TimeStampAbsClass):
+    post = models.OneToOneField(Post, verbose_name="文章",
+                                on_delete=models.CASCADE)
+    index = models.IntegerField("顺序")
+
+    class Meta:
+        verbose_name = verbose_name_plural = "轮播图"
+        ordering = ("index", )
+
+    def __str__(self):
+        return "{} - 轮播图".format(self.post)
+
 
 

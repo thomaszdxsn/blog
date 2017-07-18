@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_markdown.admin import AdminMarkdownWidget, MarkdownField
 
-from .models import Post
+from .models import Post, Carousel
 
 
 @admin.register(Post)
@@ -13,3 +13,8 @@ class PostAdmin(admin.ModelAdmin):
     exclude = ("slug",)
     formfield_overrides = {MarkdownField: {"widget": AdminMarkdownWidget}}
 
+
+@admin.register(Carousel)
+class Carousel(admin.ModelAdmin):
+    list_display = ("post", "index")
+    raw_id_fields = ("post",)
