@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     "django_markdown",
     "taggit",
+    "sorl.thumbnail",
 ]
 
 MIDDLEWARE_CLASSES = [

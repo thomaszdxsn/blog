@@ -1,5 +1,6 @@
 {% extends "post/base.html" %}
 {% load blog_tags %}
+{% load thumbnail %}
 
 {% block title %}{{ post.title }}{% endblock %}
 
@@ -31,7 +32,13 @@
                     <li>
                         <div class="thumbnail">
                             <a href="{{ similar_post.get_absolute_url }}">
-                                <img src="{% url 'placeholder' 86 64 %}">
+                                {% if not similar_post.image %}
+                                <img src="{% url 'placeholder' 164 124 %}">
+                                {% else %}
+                                    {% thumbnail similar_post.image "164x124" crop="100%" as im %}
+                                        <img src="{{ im.url }}">
+                                    {% endthumbnail %}
+                                {% endif %}
                             </a>
                             <div class="caption">
                                 <h6>{{ similar_post.title }}</h6>

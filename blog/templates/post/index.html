@@ -1,4 +1,5 @@
 {% extends "post/base.html" %}
+{% load thumbnail %}
 
 {% block title %}博客首页{% endblock %}
 
@@ -8,12 +9,12 @@
             <section class="media">
                 <div class="media-left">
                     <a href="{{ post.get_absolute_url }}">
-                        <img class="media-object"
-                             src="{% if post.image %}
-                                    {{ post.image.url }}
-                                  {% else %}
-                                    {% url 'placeholder' 136 124 %}
-                                  {% endif %}"/>
+                        {% thumbnail post.image "136x124" crop="100%" as im %}
+                        <img class="media-object" src="{{ im.url }}"/>
+                        {% endthumbnail %}
+                        {% if not post.image %}
+                        <img class="media-object" src="{% url 'placeholder' 136 124 %}">
+                        {% endif %}
                     </a>
                 </div>
                 <div class="media-body">
