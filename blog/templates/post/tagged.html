@@ -6,9 +6,9 @@
 {% block content %}
     <h1 class="page-header">具有标签 <span class="label label-primary">{{ tag }}</span> 的文章:</h1>
     {% if posts %}
-    <div class="articles">
+    <section class="row">
         {% for post in posts %}
-            <section class="media well col-md-10 col-md-offset-1">
+            <article class="media well col-md-10 col-md-offset-1">
                 <div class="media-left">
                     <a href="{{ post.get_absolute_url }}">
                         {% thumbnail post.image "136x124" crop="100%" as im %}
@@ -39,11 +39,12 @@
                         阅读全文 »
                     </a>
                 </div>
-            </section>
+            </article>
         {% endfor %}
-    </div>
+    </section>
     {% else %}
     <h2 class="lead">暂无相关内容</h2>
     {% endif %}
+    {% include "_pagination.html" with page=page_obj %}
 
 {% endblock %}

@@ -5,9 +5,9 @@
 
 {% block content %}
     <h1 class="page-header">所有文章</h1>
-    <div class="articles">
+    <section class="row">
         {% for post in posts %}
-            <section class="media well col-md-10 col-md-offset-1">
+            <article class="media well col-md-10 col-md-offset-1 row">
                 <div class="media-left">
                     <a href="{{ post.get_absolute_url }}">
                         {% thumbnail post.image "136x124" crop="100%" as im %}
@@ -38,7 +38,8 @@
                         阅读全文 »
                     </a>
                 </div>
-            </section>
+            </article>
         {% endfor %}
-    </div>
+    </section>
+    {% include "_pagination.html" with page=page_obj %}
 {% endblock %}

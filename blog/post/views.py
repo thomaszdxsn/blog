@@ -34,22 +34,34 @@ def post_search_view(request):
                   {"posts": posts, "query": query})
 
 
-def post_list_by_tag(request, tag_slug):
-    tag = get_object_or_404(Tag, slug=tag_slug)
-    posts = Post.objects.filter(tags__in=[tag])
-    return render(request, "post/tagged.html",
-                  {"posts": posts, "tag": tag})
+class PostListByTag(ListView):
+    queryset = Post.published.all()
+    context_object_name = "posts"
+    paginate_by = 20
+    template_name = "post/tagged.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        tag_slug = kwargs.get("tag_slug")
+        self.tag = get_object_or_404(Tag, slug=tag_slug)
+        return super(PostListByTag, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return super(PostListByTag, self).get_queryset().filter(tags__in=[self.tag])
+
+    def get_context_data(self, **kwargs):
+        data = super(PostListByTag, self).get_context_data(**kwargs)
+        data["tag"] = self.tag
+        return data
 
 
 class PostListView(ListView):
     queryset = Post.published.all()
     context_object_name = "posts"
-    paginate_by = 2
+    paginate_by = 10
     template_name = "post/list.html"
 
     def get_context_data(self, **kwargs):
         data = super(PostListView, self).get_context_data()
         data["section"] = "all"
-        print("data", data)
         return data
 
