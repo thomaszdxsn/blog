@@ -3,8 +3,59 @@
 
 {% block title %}博客首页{% endblock %}
 
+
 {% block content %}
-    <div class="articles">
+   <!--轮播图开始-->
+<div class="row">
+    <section class="section-left">
+    <div id="carousel-generic" class="carousel slide col-md-4"
+         data-ride="carousel">
+
+        <ol class="carousel-indicators">
+        <li data-target="#carousel-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-generic" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            {% for carousel_post in carousel_posts %}
+            <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+            <a href="{{ carousel_post.post.get_absolute_url }}">
+              {% thumbnail carousel_post.post.image '400x200' crop='100%' as im %}
+                <img src="{{ im.url }}" alt="...">
+              {% endthumbnail %}
+              <div class="carousel-caption">
+                <h4 class="lead">{{ carousel_post.post.title }}</h4>
+              </div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!--轮播图结束-->
+    <aside class="tags col-md-4 well">
+        <ul class="nav nav-pills nav-stacked">
+            {% for tag in tags %}
+            <li class="text-center">
+                <a href="{% url 'post_tagged' tag.slug %}">
+                    <span class="label label-primary">{{ tag.slug }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </aside>
+    </section>
+
+    <div class="articles col-md-6 col-md-offset-1">
         {% for post in posts %}
             <section class="media">
                 <div class="media-left">
@@ -36,4 +87,5 @@
             </section>
         {% endfor %}
     </div>
+</div>
 {% endblock %}

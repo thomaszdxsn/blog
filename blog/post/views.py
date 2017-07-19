@@ -3,13 +3,15 @@ from django.db.models import Q, Count
 
 from taggit.models import Tag
 
-from .models import Post
+from .models import Post, Carousel
 
 
 def homepage_view(request):
     posts = Post.published.all()
+    carousel_posts = Carousel.objects.all()[:3]
+    tags = Tag.objects.all()[:20]
     return render(request, "post/index.html",
-                  {"posts": posts})
+                  {"posts": posts, "carousel_posts": carousel_posts, "tags": tags})
 
 
 def post_detail_view(request, slug):

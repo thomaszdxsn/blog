@@ -11,53 +11,50 @@
             {{ post.title }}
         </h1>
         <section class="row">
-        <article class="col-md-8 col-sm-12 col-xs-12">
-            <p class="text-info">
-            发表时间: <span>{{ post.publish_time|date:"Y/m/d" }}</span>
-            <span class="pull-right">
-                标签:
-            {% for tag in post.tags.all %}
-                <a href="{% url 'post_tagged' tag.slug %}">
-                <span class="label label-primary">{{ tag }}</span>
-                </a>
-            {% endfor %}
-            </span>
-            </p>
-            {{ post.content|markdown }}
-        </article>
-        <nav class="col-md-3 col-md-offset-1">
-            <ul class="nav nav-pills nav-stacked">
-                <li><strong>相似的文章:</strong></li>
-                {% for similar_post in similar_posts %}
-                    <li>
-                        <div class="thumbnail">
-                            <a href="{{ similar_post.get_absolute_url }}">
-                                {% if not similar_post.image %}
-                                <img src="{% url 'placeholder' 164 124 %}">
-                                {% else %}
-                                    {% thumbnail similar_post.image "164x124" crop="100%" as im %}
-                                        <img src="{{ im.url }}">
-                                    {% endthumbnail %}
-                                {% endif %}
-                            </a>
-                            <div class="caption">
-                                <h6>{{ similar_post.title }}</h6>
-                                <p>{{ similar_post.description|truncatechars:30 }}</p>
-                                <p class="text-center">
-                                    <a href="{{ similar_post.get_absolute_url }}"
-                                       class="btn btn-info btn-sm">
-                                        阅读全文
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
+            <article class="col-md-8 col-sm-12 col-xs-12">
+                <p class="text-info">
+                发表时间: <span>{{ post.publish_time|date:"Y/m/d" }}</span>
+                <span class="pull-right">
+                    标签:
+                {% for tag in post.tags.all %}
+                    <a href="{% url 'post_tagged' tag.slug %}">
+                    <span class="label label-primary">{{ tag }}</span>
+                    </a>
                 {% endfor %}
-            </ul>
-
-            {% for similar_post in similar_posts %}
-            {% endfor %}
-        </nav>
+                </span>
+                </p>
+                {{ post.content|markdown }}
+            </article>
+            <aside class="col-md-3 col-md-offset-1">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><strong>相似的文章:</strong></li>
+                    {% for similar_post in similar_posts %}
+                        <li>
+                            <div class="thumbnail">
+                                <a href="{{ similar_post.get_absolute_url }}">
+                                    {% if not similar_post.image %}
+                                    <img src="{% url 'placeholder' 164 124 %}">
+                                    {% else %}
+                                        {% thumbnail similar_post.image "164x124" crop="100%" as im %}
+                                            <img src="{{ im.url }}">
+                                        {% endthumbnail %}
+                                    {% endif %}
+                                </a>
+                                <div class="caption">
+                                    <h6>{{ similar_post.title }}</h6>
+                                    <p>{{ similar_post.description|truncatechars:30 }}</p>
+                                    <p class="text-center">
+                                        <a href="{{ similar_post.get_absolute_url }}"
+                                           class="btn btn-info btn-sm">
+                                            阅读全文
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </aside>
         </section>
     </div>
 {% endblock %}

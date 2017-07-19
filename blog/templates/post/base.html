@@ -38,6 +38,9 @@
     </nav>
 
     <div class="container-fluid">
+    {% block banner %}{% endblock %}
+    </div>
+    <div class="container-fluid">
     {% block content %}{% endblock %}
     </div>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>

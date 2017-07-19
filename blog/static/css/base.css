@@ -10,8 +10,14 @@ body {
     padding-left: 100px;
 }
 
-.articles {
-    margin: 0 20%;
+.section-left {
+    position: relative;
+}
+
+.tags {
+    position: absolute;
+    top: 220px;
+    background: ;
 }
 
 .media {
