@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q, Count
+from django.views.generic import ListView
 
 from taggit.models import Tag
 
@@ -7,9 +8,9 @@ from .models import Post, Carousel
 
 
 def homepage_view(request):
-    posts = Post.published.all()
+    posts = Post.published.all()[:20]
     carousel_posts = Carousel.objects.all()[:3]
-    tags = Tag.objects.all()[:20]
+    tags = Tag.objects.all()[:15]
     return render(request, "post/index.html",
                   {"posts": posts, "carousel_posts": carousel_posts, "tags": tags})
 
@@ -38,3 +39,17 @@ def post_list_by_tag(request, tag_slug):
     posts = Post.objects.filter(tags__in=[tag])
     return render(request, "post/tagged.html",
                   {"posts": posts, "tag": tag})
+
+
+class PostListView(ListView):
+    queryset = Post.published.all()
+    context_object_name = "posts"
+    paginate_by = 2
+    template_name = "post/list.html"
+
+    def get_context_data(self, **kwargs):
+        data = super(PostListView, self).get_context_data()
+        data["section"] = "all"
+        print("data", data)
+        return data
+

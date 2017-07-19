@@ -16,8 +16,7 @@ body {
 
 .tags {
     position: absolute;
-    top: 220px;
-    background: ;
+    top: 320px;
 }
 
 .media {
@@ -27,7 +26,7 @@ body {
 .enter {
     position: absolute;
     right: 15px;
-    bottom: 23px;
+    bottom: 10px;
 }
 
 .label {

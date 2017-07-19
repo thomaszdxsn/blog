@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1,
                                    maximum-scale=1, user-scalable=no">
-    <title>{% block title %}{% endblock %}</title>
+    <title>zdxsn's blog-{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="/static/css/color.css">
+    {% block css %}{% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -26,24 +27,32 @@
             </div> <!--/.navbar-header -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{% if section == 'all' %}active{% endif %}">
+                        <a href="{% url 'post_list' %}">所有文章</a>
+                    </li>
+                    <li class="{% if section == 'about_me' %}active{% endif %}">
+                        <a href="/">关于我</a>
+                    </li>
+                </ul>
                 <form class="navbar-form navbar-left"  action="{% url 'post_search' %}">
                     <div class="form-group">
                         <input type="text" class="form-control"
-                               placeholder="输入标题/描述" name="query">
+                               placeholder="搜索标题/描述" name="query">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+
             </div> <!-- /.navbar-collpase -->
         </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container-fluid">
-    {% block banner %}{% endblock %}
-    </div>
-    <div class="container-fluid">
     {% block content %}{% endblock %}
     </div>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/js/base.js"></script>
+    {% block script %}{% endblock %}
 </body>
 </html>
