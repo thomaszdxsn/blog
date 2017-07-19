@@ -20,10 +20,10 @@ class Post(TimeStampAbsClass):
     content = MarkdownField("内容")
     publish_time = models.DateTimeField("发表时间", default=timezone.now)
     image = models.ImageField(upload_to="post/%Y/%m/%d", blank=True)
+    tags = TaggableManager(help_text="输入逗号分割的标签串", blank=True)
 
     objects = models.Manager()
     published = PostPublishedManager()
-    tags = TaggableManager(help_text="输入逗号分割的标签串", blank=True)
 
     class Meta:
         ordering = ("-created",)

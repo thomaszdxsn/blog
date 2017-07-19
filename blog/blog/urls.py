@@ -22,6 +22,7 @@ from django.contrib.sitemaps.views import sitemap
 
 from post import views as post_views
 from post.sitemaps import PostSitemap
+from post.feeds import LatestPostFeed
 from core import views as core_views
 
 sitemaps = {
@@ -54,6 +55,10 @@ urlpatterns = [
 
     url(r"^sitemap\.xml$", sitemap, {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap"),
+
+    url(r"^feed/$",
+        LatestPostFeed(),
+        name="post_feed"),
 ]
 
 if settings.DEBUG:

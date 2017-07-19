@@ -46,10 +46,13 @@
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
                 <p class="navbar-text navbar-right contact">
-                    联系我: <a href="mailto:bnm_965321@sina.com">
+                        <a href="{% url 'blog_feed' %}">
+                            <span class="glyphicon glyphicon-link">RSS</span>
+                        </a>
+                        <a href="mailto:bnm_965321@sina.com">
                             <span class="glyphicon glyphicon-send"></span>
                             bnm_965321@sina.com
-                          </a>
+                        </a>
                 </p>
 
             </div> <!-- /.navbar-collpase -->
