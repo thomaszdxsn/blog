@@ -1,0 +1,16 @@
+    <ul class="pager text-center">
+      <li class="{% if page.number == 1 %}disabled{% endif %}">
+          <a href="{% if page.has_previous %}?page={{ page.previous_page_number }}
+                   {% else %}#{% endif %}"
+             class="{% if not page.has_previous %}disabled{% endif %}">
+              上一页
+          </a>
+      </li>
+      <li>{{ page.number }}/{{ page.paginator.num_pages }}</li>
+      <li class="{% if page.number == page.paginator.num_pages %}disabled{% endif %}">
+          <a href="{% if page.has_next %}?page={{ page.next_page_number }}
+                   {% else %}#{% endif %}">
+              下一页
+          </a>
+      </li>
+    </ul>

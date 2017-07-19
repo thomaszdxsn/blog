@@ -6,8 +6,8 @@ from .models import Post, Carousel
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "slug",
-                    "publish_time", "created", "modified")
+    list_display = ("title", "author","publish_time",
+                    "created", "modified")
     list_filter = ("publish_time", "created", "modified")
     search_fields = ("title", "content", "author")
     exclude = ("slug",)

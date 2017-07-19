@@ -17,9 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.decorators.cache import cache_page
+from django.contrib.sitemaps.views import sitemap
 
 from post import views as post_views
+from post.sitemaps import PostSitemap
 from core import views as core_views
+
+sitemaps = {
+    "posts": PostSitemap
+}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -33,7 +40,7 @@ urlpatterns = [
         post_views.post_detail_view,
         name="post_detail"),
     url(r"^tag/(?P<tag_slug>[\w-]+)$",
-        post_views.PostListByTag.as_view(),
+        cache_page(60 * 60)(post_views.PostListByTag.as_view()),
         name="post_tagged"),
     url(r"^all/$",
         post_views.PostListView.as_view(),
@@ -44,6 +51,9 @@ urlpatterns = [
         name="placeholder"),
 
     url(r"^markdown/", include("django_markdown.urls")),
+
+    url(r"^sitemap\.xml$", sitemap, {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap"),
 ]
 
 if settings.DEBUG:

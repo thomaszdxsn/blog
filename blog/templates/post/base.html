@@ -37,12 +37,6 @@
                             所有文章
                         </a>
                     </li>
-                    <li class="{% if section == 'about_me' %}active{% endif %}">
-                        <a href="/">
-                            <span class="glyphicon glyphicon-phone"></span>
-                            联系我
-                        </a>
-                    </li>
                 </ul>
                 <form class="navbar-form navbar-left"  action="{% url 'post_search' %}">
                     <div class="form-group">
@@ -51,6 +45,12 @@
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
+                <p class="navbar-text navbar-right contact">
+                    联系我: <a href="mailto:bnm_965321@sina.com">
+                            <span class="glyphicon glyphicon-send"></span>
+                            bnm_965321@sina.com
+                          </a>
+                </p>
 
             </div> <!-- /.navbar-collpase -->
         </div><!-- /.container-fluid -->
