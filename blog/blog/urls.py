@@ -62,6 +62,9 @@ urlpatterns = [
         LatestPostFeed(),
         name="post_feed"),
 
+    url(r"^api/",
+        include("post.api.urls", namespace="api")),
+
     url(r'^grappelli/', include('grappelli.urls')),
     # url(r'^silk/', include('silk.urls', namespace='silk'))   # 性能检测
 ]
