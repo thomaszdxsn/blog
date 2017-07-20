@@ -25,7 +25,7 @@
             {% for carousel_post in carousel_posts %}
             <div class="item {% if forloop.counter == 1 %}active{% endif %}">
             <a href="{{ carousel_post.post.get_absolute_url }}">
-              {% thumbnail carousel_post.post.image '400x260' crop='100%' as im %}
+              {% thumbnail carousel_post.post.image '400x260' crop='center' as im %}
                 <img src="{{ im.url }}">
               {% endthumbnail %}
               <div class="carousel-caption">

@@ -41,7 +41,7 @@ class PostListView(ListView):
 
 
 def homepage_view(request):
-    posts = Post.published.all()[:10]
+    posts = Post.published.all()[:6]
     carousel_posts = Carousel.objects.all()[:3]
     tags = Tag.objects.all()[:15]
     return render(request, "post/index.html",

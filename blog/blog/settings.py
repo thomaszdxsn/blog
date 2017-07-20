@@ -36,22 +36,29 @@ INSTALLED_APPS = [
     "post",
     "core",
 
+    'grappelli',
+    'admin_honeypot',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
 
     "django_markdown",
     "taggit",
     "sorl.thumbnail",
-    "memcache_status",
-    "django.contrib.sites",
-    "django.contrib.sitemaps",
+    "debug_toolbar",
+    "rest_framework",
+    # "silk",   # 性能检测
 ]
 
 MIDDLEWARE_CLASSES = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # "silk.middleware.SilkyMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.cache.UpdateCacheMiddleware",
@@ -151,7 +158,18 @@ CACHES = {
         "LOCATION": "127.0.0.1:11211",
     }
 }
+
 # 全局cache设置
-CACHE_MIDDLEWARE_ALIAS = "default"
-CACHE_MIDDLEWARE_SECONDS = 60 * 15
-CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
+# CACHE_MIDDLEWARE_ALIAS = "default"
+# CACHE_MIDDLEWARE_SECONDS = 1
+# CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
+
+# debug-toolbar 设置
+INTERNAL_IPS = ["127.0.0.1"]
+
+# rest_framework 设置
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly",
+    ]
+}

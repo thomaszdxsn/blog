@@ -30,7 +30,9 @@ sitemaps = {
 }
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r"^admin/",
+        include("admin_honeypot.urls", namespace="admin_honeypot")),
+    url(r'^fake-admin/', admin.site.urls),
     url(r"^$",
         post_views.homepage_view,
         name="homepage"),
@@ -59,8 +61,15 @@ urlpatterns = [
     url(r"^feed/$",
         LatestPostFeed(),
         name="post_feed"),
+
+    url(r'^grappelli/', include('grappelli.urls')),
+    # url(r'^silk/', include('silk.urls', namespace='silk'))   # 性能检测
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+    urlpatterns = [
+                      url(r'^__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns
