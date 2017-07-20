@@ -22,7 +22,7 @@ class TestPostModel(TestCase):
         p = Post.objects.create(title="如果我是DJ，你会爱我吗？你会爱我吗？你会爱我吗？"
                                       "你会爱我吗？你会爱我吗？你会爱我吗？你会爱我吗?",
                                 author=self.user, content="test")
-        self.assertTrue(len(p.slug) <= 100)
+        self.assertTrue(len(p.slug) <= 30)
 
     def test_generated_slug_not_be_duplicate(self):
         p1 = Post.objects.create(title="你好", author=self.user,
@@ -39,7 +39,7 @@ class TestPostModel(TestCase):
         p2 = Post.objects.create(title="如果我是DJ，你会爱我吗？你会爱我吗？你会爱我吗？"
                                        "你会爱我吗？你会爱我吗？你会爱我吗？你会爱我吗?",
                                 author=self.user, content="test")
-        self.assertTrue(len(p2.slug) <= 100)
+        self.assertTrue(len(p2.slug) <= 30)
         self.assertTrue(p2.slug.endswith("2"))
 
     def test_published_manager_only_return_time_before_now(self):

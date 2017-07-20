@@ -34,7 +34,7 @@ class Post(TimeStampAbsClass):
 
     def save(self, *args, **kwargs):
         self.slug = uuslug(self.title, instance=self,
-                           max_length=100, start_no=2)
+                           max_length=30, start_no=2)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):

@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
     }
 }
 
@@ -139,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "../static")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
@@ -160,9 +161,9 @@ CACHES = {
 }
 
 # 全局cache设置
-# CACHE_MIDDLEWARE_ALIAS = "default"
-# CACHE_MIDDLEWARE_SECONDS = 1
-# CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
+CACHE_MIDDLEWARE_ALIAS = "default"
+CACHE_MIDDLEWARE_SECONDS = 1
+CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
 
 # debug-toolbar 设置
 INTERNAL_IPS = ["127.0.0.1"]
