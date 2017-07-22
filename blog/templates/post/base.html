@@ -45,15 +45,24 @@
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
-                <p class="navbar-text navbar-right contact">
+                <ul class="nav navbar-nav navbar-right contact">
+                    <li>
+                        <a href="https://github.com/thomaszdxsn/">
+                            <span class="glyphicon glyphicon-link">Github</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{% url 'post_feed' %}">
                             <span class="glyphicon glyphicon-link">RSS</span>
                         </a>
+                    </li>
+                    <li>
                         <a href="mailto:bnm_965321@sina.com">
                             <span class="glyphicon glyphicon-send"></span>
                             bnm_965321@sina.com
                         </a>
-                </p>
+                    </li>
+                </ul>
 
             </div> <!-- /.navbar-collpase -->
         </div><!-- /.container-fluid -->
@@ -65,6 +74,10 @@
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/static/js/base.js"></script>
-    {% block script %}{% endblock %}
+    <script>
+        $("table").addClass("table table-striped table-bordered");
+    </script>
+    {% block script %}
+    {% endblock %}
 </body>
 </html>

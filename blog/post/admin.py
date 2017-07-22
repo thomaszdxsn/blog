@@ -18,3 +18,5 @@ class PostAdmin(admin.ModelAdmin):
 class Carousel(admin.ModelAdmin):
     list_display = ("post", "index")
     raw_id_fields = ("post",)
+    list_editable = ("index",)
+

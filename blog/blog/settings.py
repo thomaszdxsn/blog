@@ -25,7 +25,7 @@ SECRET_KEY = 'b%l1dc&&@&cah$n=bsa92e-$_@7oo3*d*ms6yg9hz^qb+c6(1_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Sitemap setting
 SITE_ID = 1
@@ -139,10 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "../static")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, "../static")
 
 # Media files
 
@@ -162,7 +162,7 @@ CACHES = {
 
 # 全局cache设置
 CACHE_MIDDLEWARE_ALIAS = "default"
-CACHE_MIDDLEWARE_SECONDS = 1
+CACHE_MIDDLEWARE_SECONDS = 60 * 15
 CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
 
 # debug-toolbar 设置

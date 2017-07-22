@@ -13,5 +13,6 @@ register = Library()
 def markdown_format(value):
     return mark_safe(markdown(value,
                               extras=["code-friendly", "fenced-code-blocks",
-                                      "target-blank-links", "pyshell", "tables"],
+                                      "target-blank-links", "pyshell", "tables",
+                                      "toc", "wiki-tables",],
                               safe_mode=True))

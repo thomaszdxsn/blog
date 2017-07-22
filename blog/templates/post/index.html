@@ -46,7 +46,7 @@
         </a>
     </div>
     <!--轮播图结束-->
-    <aside class="tags col-md-3">
+    <aside class="tags col-md-3 visible-md-block visible-lg-block">
         <div class="tagcloud">
             {% for tag in tags %}
                 <a href="{% url 'post_tagged' tag.slug %}">
@@ -62,7 +62,7 @@
             <section class="media well">
                 <div class="media-left">
                     <a href="{{ post.get_absolute_url }}">
-                        {% thumbnail post.image "136x124" crop="100%" as im %}
+                        {% thumbnail post.image "136x124" crop="center" as im %}
                         <img class="media-object" src="{{ im.url }}"/>
                         {% endthumbnail %}
                         {% if not post.image %}
