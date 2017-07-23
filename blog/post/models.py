@@ -26,7 +26,7 @@ class Post(TimeStampAbsClass):
     published = PostPublishedManager()
 
     class Meta:
-        ordering = ("-created",)
+        ordering = ("-publish_time",)
         verbose_name = verbose_name_plural = "博客文章"
 
     def __str__(self):
