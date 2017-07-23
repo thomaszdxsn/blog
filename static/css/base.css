@@ -1,0 +1,38 @@
+body {
+    padding-top: 70px;
+}
+
+.thumbnail:hover {
+    background: #ccc;
+}
+
+.navbar-brand {
+    padding-left: 10px;
+}
+
+.section-left {
+    position: relative;
+}
+
+.tags {
+    position: absolute;
+    top: 260px;
+}
+
+.media {
+    position: relative;
+}
+
+.enter {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+
+.label {
+    display: inline-block;
+}
+
+.contact {
+    margin-right: 20px;
+}
