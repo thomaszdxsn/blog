@@ -11,4 +11,4 @@ register = Library()
 @register.filter(name="markdown")
 @stringfilter
 def markdown_format(value):
-    return mark_safe(markdown(value, ['extra', 'codehilite']))
+    return mark_safe(markdown(value, ['extra', 'codehilite', 'toc']))
