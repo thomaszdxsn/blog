@@ -10,7 +10,7 @@ django-memcache-status==1.1
 django-silk==1.0.0
 django-taggit==0.22.1
 django-uuslug==1.1.8
-djangorestframework==3.6.3
+djangorestframework==3.9.1
 gunicorn==19.7.1
 idna==2.5
 Jinja2==2.9.6
